@@ -1,8 +1,9 @@
 import React from "react";
+import "./index.css"
 
 class Header extends React.Component{
   render(){
-    return(<><p>Header</p></>)
+    return(<h1>City Explorer</h1>)
   }
 }
 
