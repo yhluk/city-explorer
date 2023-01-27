@@ -5,20 +5,35 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
+  background-color: rgb(114, 233, 223) !important;
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-*{
+
+* {
   text-align: center;
-  padding: 20px;
+  padding: 10px;
+  margin: auto;
+
+}
+
+div .card {
+  width: max-content;
+  background-color: rgb(35, 187, 233);
+  align-items: center;
+}
+
+input.form-control {
+  width: 250px;
+  border: dashed rgb(33, 0, 246) 3px;
   margin: auto;
 }
-div .card{
-width: max-content;
-background-color: rgb(35, 187, 233);
-align-items: center;
+
+h1{
+  padding: 0 0;
+  margin: 0 0;
 }
