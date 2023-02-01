@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Card, Container, Form, Alert } from "react-bootstrap";
 import axios from "axios";
 import "./index.css"
+import Weather from "./Weather";
 
 class Main extends React.Component {
 
@@ -13,7 +14,8 @@ class Main extends React.Component {
       city: '',
       cityData: {},
       error: false,
-      errorMessage: ''
+      errorMessage: '',
+      weatherData: []
     }
   }
 
@@ -29,15 +31,22 @@ class Main extends React.Component {
   getApiData = async (event) => {
     event.preventDefault();
     let url = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${this.state.city}&format=json`
+
+    let urlWeather = `${process.env.REACT_APP_SERVER}/weather?searchQuery=${this.state.city}`
+
     this.setState({
       displayInfo: false,
       error: false
     })
     try {
       let response = await axios.get(url);
+      let weatherResponse = await axios.get(urlWeather);
+
       this.setState({
         displayInfo: true,
-        cityData: response.data[0]
+        cityData: response.data[0],
+        weatherData: weatherResponse.data
+      
       })
     } catch (err) {
       this.setState({
@@ -50,6 +59,7 @@ class Main extends React.Component {
 
 
   render() {
+    console.log(this.state.weatherData)
     return (
       <>
         <Container>
@@ -72,13 +82,18 @@ class Main extends React.Component {
               </Card.Body>
             </Card></>
         }
+       
         {this.state.error &&
           <>
             <Alert variant="danger">
               {this.state.errorMessage}
             </Alert>
           </>
-        }
+        } 
+        <Weather
+        weatherDay={this.state.weatherData}
+        />
+        
       </>
     )
   }
