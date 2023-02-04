@@ -7,12 +7,14 @@ import { Card, Container } from "react-bootstrap";
 class Weather extends React.Component {
   render() {
     return (
-      <Container  >
+      <Container className="weatherCard"  >
+        
       {this.props.weatherDay.map((day, idx) =>
           <Card
             border="success"
             style={{
-              width: '10rem'
+              width: '10rem',
+              height: '20rem !important'
             }}
             key={idx}>
             <Card.Title>{day.description}</Card.Title>
